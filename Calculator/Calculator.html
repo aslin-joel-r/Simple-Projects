@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="calculator.css">
+   <title>Calculator</title>
+</head>
+<body>
+    <h1 id="head">Calculator</h1>
+
+    <div id="container">
+
+        <input type="text" disabled id="lab1"></input>
+
+        <button id="del" class="buttons "  onclick="deletes()">C</button>
+         <button id="but1" class="buttons" onclick="but(1)">1</button>
+        <button id="but2" class="buttons" onclick="but(2)">2</button>
+        <button id="but3" class="buttons" onclick="but(3)">3</button>
+
+        <button id="but4" class="buttons" onclick="but(4)">4</button>
+        <button id="but5" class="buttons" onclick="but(5)">5</button>
+        <button id="but6" class="buttons" onclick="but(6)">6</button>
+
+        <button id="but7" class="buttons" onclick="but(7)">7</button>
+        <button id="but8" class="buttons" onclick="but(8)">8</button>
+        <button id="but9" class="buttons" onclick="but(9)">9</button>
+        <button id="but0" class="buttons" onclick="but(0)">0</button>
+        <button id="dot" class="buttons"  onclick="but('.')">.</button>
+        
+        <button id="add" class="buttons" onclick="oper('+')">+</button>
+        <button id="sub" class="buttons" onclick="oper('-')">-</button>
+        <button id="mul" class="buttons" onclick="oper('*')">*</button>
+        <button id="div"  class="buttons"onclick="oper('/')">/</button>
+
+        <button id="equals" class="buttons" onclick="equals()">=</button>
+
+    </div>
+    </div>
+    <script src="calculator.js"></script>
+</body>
+</html>

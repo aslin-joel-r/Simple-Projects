@@ -1,0 +1,56 @@
+*{
+    background-color:lightblue;
+}
+#head{
+    font-size: 50px;
+    text-align: center;
+    font-family: cursive;
+}
+#container{
+    margin: 50px;
+    height: 80vh;
+    width: 62vh;
+    display: grid;
+    grid-template-columns: 20vh 20vh 20vh;
+    gap: 10px;
+    border-radius: 25px;
+    background-color:#05445E;
+    padding: 15px;
+    position: absolute;
+    left:30%;
+    border: 4px solid black;
+}
+
+#lab1{
+    font-size:6vh;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+    color: #05445E;
+    
+    border-radius: 20px;
+    background-color:#D4F1F4;
+    border: 1px solid rgb(86, 82, 82);
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    
+}
+button{
+    font-family: monospace;
+}
+#del{
+    background-color: #819a97;
+}
+.buttons{
+    background-color:#189AB4;
+    font-size:5vh;
+    border-radius: 15px;
+    color: aliceblue;
+    border : 3px solid black
+}
+
+#equals{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    background-color: rgb(29, 130, 130);
+}
