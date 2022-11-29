@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number-Guessing-game</title>
+</head>
+<body>
+    <style>
+        *{
+            text-align: center;
+            background-color: bisque;
+        }
+        h1{
+            font-size: 70px;
+            font-family: cursive;
+        }
+        h3{
+            font-size: 50px;
+            font-family: monospace;
+        }
+        #num{
+            height: 95px;
+            width:350px;
+            font-size: 60px;
+            font-family: monospace;
+            border: 8px solid black;
+        }
+        #but{
+            height: 50px;
+            width: 130px;
+            font-size: 30px;
+            font-family: sans-serif;
+            border: 5px solid black;
+        }
+        #lab{
+            font-size: 40px;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+    </style>
+    <h1>Welcome to the number guessing game</h1>
+    <h3>Enter the number between 1 to 100</h3>
+
+    <input type="number"  id="num"><br><br><br>
+    <button type="submit" id="but" onclick>Submit</button>
+    <br><br><br>
+    <label id="lab"></label>
+<script>
+    const a=Math.round(Math.random()*100)+1;
+  
+    
+    document.getElementById("but").onclick=
+    function(){
+        
+        let b =document.getElementById("num").value;
+        if(a==b){
+            document.getElementById("lab").innerHTML="...You won the match..."
+        }
+        else if(a<b){
+            document.getElementById("lab").innerHTML="Hint : .. Your number is Bigger..";
+            
+        }
+        else if(a>b){
+            document.getElementById("lab").innerHTML="Hint : .. Your number is Smaller .."
+        }
+        console.log("b is ",b)
+    }
+    console.log("a is ",a);
+    
+</script>
+</body>
+</html>
