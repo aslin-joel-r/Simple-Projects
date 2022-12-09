@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-Speech</title>
+</head>
+<body >
+    <main id='content'>
+        <h1>Smart India Hackathon 2022</h1>
+        <p id="para">Welcome to the Hackathon project , our team
+            name is Error Makerz. We are working on a project that helps the visually impaired people
+            to learn the courses that they are interested.
+        </p>
+        <br><br>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="resume">Resume</button>
+    </main>
+    <style>
+        *{
+            text-align: center;
+            font-size: 30px;
+            font-family: cursive;
+            background-color: black;
+            color: white;
+
+        }
+        button{
+            border: 3px solid white;
+        }
+    </style>
+    <script >
+        let voice = new SpeechSynthesisUtterance();
+let text_p=document.getElementById("content").innerHTML;
+voice.text = text_p;
+voice.rate=1;
+voice.volume = 1;
+
+let button1=document.querySelector("#start")
+let button2=document.querySelector("#stop")
+let button3=document.querySelector("#resume")
+
+button1.addEventListener('click',start)
+button2.addEventListener('click',stop)
+button3.addEventListener('click',resume)
+
+function start(){
+    window.speechSynthesis.speak(voice);
+}
+function stop(){
+    window.speechSynthesis.pause();
+}
+function resume(){
+    window.speechSynthesis.resume()
+}
+
+    </script>
+</body>
+</html>
