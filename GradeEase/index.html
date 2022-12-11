@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../haptics.js"></script>
+
+    <style>
+	*{
+    margin: 0px;
+    background-color: aqua;
+}
+
+#head{
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    color: aqua;
+    background-color: black;
+    text-align: center;
+}
+.headbutton{
+    width:32%;
+    height: 40px;
+    padding: 10px;
+}
+#foot{
+    position: fixed;
+    height: 60px;
+    text-align: center;
+    color: aliceblue;
+    bottom: 0px;
+    background-color:aquamarine;
+    width: 100%;
+}
+#demo{
+    text-align: center;
+    position: relative;
+    top: 60px;
+    font-size: 2rem;
+    padding: 10px;
+    background-color: black;
+    color: aqua;
+    position: relative;
+    
+}
+#module{
+    position: relative;
+    top: 70px;
+    text-align: center;
+    color: aqua;
+    background-color: black;
+    font-size: 2rem;
+    padding: 10px;
+}
+#question{
+    
+    text-align: center;
+    font-size: 2rem;
+    position: relative;
+    top: 80px;
+    padding: 10px;
+}
+
+#submit{
+    position: relative;
+    top: 100px;
+    text-align: center;
+    background-color: black;
+    color: aqua;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+
+}
+.choices{
+    position: relative;
+    top: 100px;
+    height: 40px;
+    width:300px;
+    text-align: center;
+    font-size: 20px;
+    top: 100px;
+    padding: px;
+    margin-top: 10px;
+    font-weight: bolder;
+    border: 4px solid black;
+
+}
+
+.button{
+            font-size: 25px;
+            color: white;
+            background-color: black;
+            position: relative;
+            margin-top: 30px;
+            margin-bottom: 6px;
+            height: 80px;
+            width: 250px;
+            border-radius:2px solid white
+        }
+.Options{
+    padding-bottom: 50px;
+}
+#extra{
+    height: 100px;
+    width: 100%;
+}
+#previous{
+    width:45%;
+    height: 50px;
+    font-size: 25px;
+    background-color: red;
+    color: aliceblue;
+    border: 4px solid white;
+}
+#next{
+    width: 45%;
+    height: 50px;
+    font-size: 25px;
+    background-color: red;
+    color: aliceblue;
+    border: 4px solid white;
+}
+</style>
+    <title>GradeEase</title>
+    <script>
+        var previous='';
+        console.log(previous)
+
+        function Speak(id)
+        {
+        const synth = window.speechSynthesis;
+        let ourText = document.getElementById(id).innerHTML;
+        const utterThis = new SpeechSynthesisUtterance(ourText);
+        synth.speak(utterThis);
+    
+}
+function SpeechRecog(){
+    var output = document.getElementById("output");
+
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+
+    recognition.onstart = function() {
+        setInterval( recognition.stop(), 1000)
+    };
+    
+    recognition.onresult = function(event) {
+        var transcript = event.results[0][0].transcript;
+        output.innerHTML = transcript;
+        output.classList.remove("hide");
+    };
+    recognition.start();
+
+};
+
+let current;
+        const ids =['demo','module','general-question'
+        ,'for-example',"demo-long","demo-twolong","demo-short",
+        "actual-question","submit","option1","option2","option3","option4",'extra'
+    ];
+        
+        let i=0;
+        
+        function next(id){
+
+                current=ids[i]
+                i+=1;
+                Speak(current);
+                    
+                }
+        function previouse(id){
+            
+                i-=1;
+
+                if(i<0){
+                    Speak('no')
+
+                }
+                else{
+                    current=ids[i]
+                    console.log(i)
+                    Speak(current);
+                }
+               
+                    
+                }
+        
+        
+    </script>
+</head>
+<body id="body">
+    <header id="head">
+        <button class="headbutton" onclick="Back()">Back</button>
+            <button class="headbutton" onclick= "Pause()">Pause</button>
+            <button class="headbutton" onclick= "Play()">Play</button>
+            <p id="no" visibility="hidden"  >
+                There is no previous pages
+            </p>
+            
+    </header>
+    
+    <div >
+        <h2 id="demo" onclick="Speak(id)">Demo</h2>
+        <h3 id="module" onclick="Speak(id)">Module</h3>
+        <div id="question" >
+            <div >
+            <p id="general-question" onclick="Speak(id)">Let's start, if you feel one long vibration, you shall consider it as ten, Like wise, if you feel a short vibration, you shall consider it as five.</p>
+            <p id="for-example" onclick="Speak(id)">For Example, </p>
+        </div>
+        <div>
+            <button class= "button" id="demo-long" onclick= "SpL()"> Long = "10"</button> <br>
+
+            <button class= "button" id="demo-twolong" onclick= "SpTL()"> Long + Long = "20"</button> <br>
+            <button class= "button" id="demo-short" onclick= "SpS()">Short = "5"</button> <br>
+        </div>
+            <div >
+
+		<p id="actual-question" onclick="Speak(id)">Quiz Time: Find the value of  long + long + long + long + short  = ?</p>
+    </div>
+        </div>
+        <button id="submit" onclick="Speak(id)">Choose your options below</button>
+        <ul class="Options">
+            <button class="choices" id="option1"  onclick="SpOp1(option1)" ondblclick ="check('1')">Option A</button>
+            <button class="choices" id="option2"  onclick="SpOp2(option2)" ondblclick ="check('2')">Option B</button>
+            <button class="choices" id="option3"  onclick="SpOp3(option3)" ondblclick ="check('3')"">Option C</button>
+            <button class="choices" id="option4"  onclick="SpOp4(option4)" ondblclick ="check('4')">Option D</button>
+        </ul>
+    </div><br><br><br><br>
+    <div id="extra"></div>
+    <footer id="foot">
+        <button id="previous" onclick="previouse()">Previous</button>
+        <button id="next" onclick="next()">Next</button>
+    </footer>
+    <script>
+
+function SpL(){
+    Speak('demo-long');
+    setTimeout(()=>{ Long() }, 2500);
+}
+
+function SpTL(){
+    Speak('demo-twolong');
+    setTimeout(()=>{ twoLong() }, 2500);
+}
+function SpS(){
+    Speak('demo-short');
+    setTimeout(()=>{ short() }, 1500);
+}
+
+//@desc trying to delay events
+//delay button clicks
+
+
+//@desc Global Pause
+//@calls pauseText
+//@calls PlayCustomPattern for Pause
+function Pause(){
+  //window.speechSynthesis.pause();
+  Haptics.vibrate([250, 50, 250]);
+}
+
+function Play(){
+  //window.speechSynthesis.resume();
+  Haptics.vibrate([250, 50]);
+}
+
+function Back(){
+  //window.speechSynthesis.resume();
+  Haptics.vibrate([500, 50]);
+}
+
+//@desc voice + vibration
+function SpOp1(){
+    Speak('option1');
+    setTimeout(()=>{ ThirtyFive() }, 1800);
+}
+function SpOp2(){
+    Speak('option2');
+    setTimeout(()=>{ Thirty() }, 1800);
+}
+function SpOp3(){
+    Speak('option3');
+    setTimeout(()=>{ FourtyFive() }, 1800);
+}
+function SpOp4(){
+    Speak('option4');
+    setTimeout(()=>{ Fifty() }, 1800);
+}
+
+//@desc play Correct music
+function PlayCorrectMusic(){
+    let audio = new Audio("Correct.mp3");
+    audio.play();
+}
+
+//@desc play wrong music
+function PlayWrongMusic(){
+        let audio = new Audio("Wrong.mp3");
+        audio.play();
+    };       
+   // let audio = new Audio("Wrong.mp3");
+    //audio.play();
+
+//@desc custom standard
+ const Long =function Long() { 
+    Haptics.vibrate(1000);
+};
+function short() { 
+    Haptics.vibrate(250);
+};
+
+//@checking patterns
+function ShapOFYou() { 
+    Haptics.vibrate([500, 250, 500, 250, 500, 250, 500, 250]);
+    
+};
+
+//demo
+function twoLong() { 
+    Haptics.vibrate([1000, 250, 1000]);
+};
+function longShort() { 
+    Haptics.vibrate([1000, 250, 250]);
+};
+
+//@desc checking corect option
+function check(option) {
+    switch(option) {
+        case '1':
+        PlayWrongMusic();
+            break;
+        case '2':
+        PlayWrongMusic();
+            break;
+        case '3':
+            //alert('correct');
+            PlayCorrectMusic();
+            break;
+        case '4':
+        PlayWrongMusic();
+            break;
+        default:
+            alert('Select an option');
+    }
+    
+}
+
+//@desc : navigate
+/*function Navigate () {
+    const NavIndex = ["demo", "module", "question", "general-question", "for-example"];
+    for(let i = 0;i<NavIndex.length;i++) {
+	console.log(NavIndex[i]) ;
+    };
+}; */
+//option
+function ThirtyFive() { 
+    Haptics.vibrate([1000, 250, 1000, 250, 1000, 250, 250]);
+};
+function Thirty() { 
+    Haptics.vibrate([1000, 250, 1000, 250, 1000]);
+};
+function FourtyFive() { 
+    Haptics.vibrate([1000, 250, 1000, 250, 1000, 250, 1000, 250, 250]);
+};
+function Fifty() { 
+    Haptics.vibrate([1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000]);
+};
+
+
+</script>
+</body>
+</html>
