@@ -1,2 +1,2 @@
 # Simple-Projects
-Small projects developed during studying the programming languages
+Small projects developed during the learning.
